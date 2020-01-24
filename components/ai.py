@@ -3,7 +3,6 @@ import tcod as libtcod
 #  This prevents the linter from complaining that the component class has no owner member (it's defined in the entity class init)
 #  pylint: disable=no-member
 
-
 class BasicMonster:
     def take_turn(self, target, fov_map, game_map, entities):
         results = []
