@@ -8,6 +8,8 @@ from map_objects.tile import Tile
 from components.fighter import Fighter
 from components.ai import BasicMonster
 from render_functions import RenderOrder
+from game_messages import Message
+
 
 class GameMap:
     def __init__(self, width, height):
@@ -106,7 +108,9 @@ class GameMap:
                                      ai=ai_component)
 
                 entities.append(monster)
-
+            else :
+                print('tried to create monster at {x},{y} but it was blocked.')
+                
     def create_h_tunnel(self, x1, x2, y):
         for x in range(min(x1, x2), max(x1,x2)+1):
             self.tiles[x][y].blocked = False

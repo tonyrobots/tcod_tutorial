@@ -61,13 +61,15 @@ def main():
     con = libtcod.console.Console(screen_width, screen_height) # main console
     panel = libtcod.console.Console(screen_width, panel_height) # ui panel
 
+    message_log = MessageLog(message_x, message_width, message_height)
+
     game_map = GameMap(map_width, map_height)
     game_map.make_map(max_rooms, room_min_size, room_max_size, map_width, map_height, player, entities, max_monsters_per_room)
     
     fov_recompute = True
     fov_map = initialize_fov(game_map)
 
-    message_log = MessageLog(message_x, message_width, message_height)
+    turn_count = 0
     
     key = libtcod.Key()
     mouse = libtcod.Mouse()
@@ -112,6 +114,7 @@ def main():
                     player.move(dx,dy)
                     fov_recompute = True
                     
+                turn_count += 1
                 game_state = GameStates.ENEMY_TURN
 
         if exit:

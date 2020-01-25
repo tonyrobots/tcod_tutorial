@@ -87,6 +87,17 @@ class Entity:
 
                 # Delete the path to free memory
             libtcod.path_delete(my_path)
+    
+    def processTimeBasedEffects(self, turn):
+        # TODO: should create a structure of some sort to hold effects and their duration
+        # maybe a lambda (or function call), duration in turns, bool repeating
+        # then each turn iterate through the list and increment the turn counter for each, 
+        # if turn counter matches duration value, it fires, and deletes if not recurring, or 
+        # resets counter if it is recurring. 
+        # For now will just hard code some stuff
+        if turn%10 == 0:
+            self.fighter.hp += 1 # heal a point every 10 turns
+            
         
 def get_blocking_entities_at_location(entities, destination_x, destination_y):
     for entity in entities:
