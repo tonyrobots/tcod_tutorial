@@ -13,7 +13,6 @@ from render_functions import clear_all, render_all, RenderOrder
 from game_messages import MessageLog
 
 
-
 def main():
 
     # screen constants
@@ -113,8 +112,7 @@ def main():
                 else:
                     player.move(dx,dy)
                     fov_recompute = True
-                    
-                turn_count += 1
+                                    
                 game_state = GameStates.ENEMY_TURN
 
         if exit:
@@ -138,7 +136,15 @@ def main():
 
                 message_log.add_message(message)
         if game_state == GameStates.ENEMY_TURN:
+            turn_count += 1
+
             for entity in entities:
+                time_based_results = entity.processTimeBasedEffects(turn_count)
+                for tb_result in time_based_results:
+                    message = tb_result.get('message')
+                    if message:
+                        message_log.add_message(message)
+                
                 if entity.ai:
                     enemy_turn_results = entity.ai.take_turn(player, fov_map, game_map, entities)
 

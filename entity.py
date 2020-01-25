@@ -95,9 +95,11 @@ class Entity:
         # if turn counter matches duration value, it fires, and deletes if not recurring, or 
         # resets counter if it is recurring. 
         # For now will just hard code some stuff
+        results = []
         if turn%10 == 0:
-            self.fighter.hp += 1 # heal a point every 10 turns
-            
+            if self.fighter:
+                self.fighter.heal(1) # heal a point every 10 turns
+        return results   
         
 def get_blocking_entities_at_location(entities, destination_x, destination_y):
     for entity in entities:

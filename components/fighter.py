@@ -20,6 +20,21 @@ class Fighter:
             results.append({'dead': self.owner})
         return results
     
+    def heal(self, amount=0):
+        results = []
+        if amount == 0:
+            # heal full if amount is 0
+            self.hp = self.max_hp
+            results.append({'message': Message('You are restored to full health.')})
+        else:
+            self.hp += amount
+            if self.hp > self.max_hp:
+                self.hp = self.max_hp
+            results.append({'message': Message('{0} is healed {1} hit point(s).'.format(
+                self.owner.name.capitalize(), amount), libtcod.white)})
+        return results
+    
+    
     def attack(self, target):
         results = []
         damage = self.power - target.fighter.defense
