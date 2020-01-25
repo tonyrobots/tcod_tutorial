@@ -54,6 +54,7 @@ def main():
     entities = [player]
 
     libtcod.console_set_custom_font('assets/consolas12x12_gs_tc.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
+    # libtcod.console_set_custom_font('assets/arial10x10.png' , libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
 
     libtcod.console_init_root(screen_width, screen_height, 'libtcod tutorial revised', False, renderer=libtcod.RENDERER_SDL2, vsync=False)
 
